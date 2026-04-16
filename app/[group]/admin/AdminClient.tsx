@@ -172,15 +172,18 @@ export default function AdminClient({ group, members, sessions, billing }: Props
             {copied ? '✅ Zkopírováno!' : '📋 Zkopírovat pro WhatsApp'}
           </button>
 
-          {/* QR code info */}
-          <div className="bg-amber-50 rounded-2xl p-4">
-            <h2 className="text-sm font-semibold text-amber-700 mb-2 uppercase tracking-wide">QR kód pro saunu</h2>
-            <p className="text-sm text-amber-700 mb-2">Adresa pro check-in (vytiskněte QR kód z této URL):</p>
-            <div className="bg-white rounded-lg p-3 font-mono text-xs text-slate-600 break-all">
-              {checkinUrl}
-            </div>
-            <p className="text-xs text-amber-600 mt-2">
-              QR kód vygenerujte zdarma na qr-code-generator.com
+          {/* QR code */}
+          <div className="bg-amber-50 rounded-2xl p-4 flex flex-col items-center gap-3">
+            <h2 className="text-sm font-semibold text-amber-700 uppercase tracking-wide self-start">QR kód pro saunu</h2>
+            <img
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(checkinUrl)}`}
+              alt="QR kód pro check-in"
+              width={220}
+              height={220}
+              className="rounded-xl border-4 border-white shadow"
+            />
+            <p className="text-xs text-amber-600 text-center">
+              Vytiskněte a přilepte do sauny. Naskenování otevře stránku pro zápis příchodu.
             </p>
           </div>
         </div>
